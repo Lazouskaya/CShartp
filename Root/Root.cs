@@ -10,10 +10,17 @@ namespace Root
     {
         public static double RootOfNthDegreeByNewton(double number, double power, double accuracy)
         {
-            if (number < 0 || power < 0 || accuracy < 0 || accuracy > 1)
+            if (number < 0)
             {
-                Console.WriteLine("Incorrect input parameters");
-                return 0;
+               throw new System.ArgumentException("Invalid value of number. It must be greater than 0");
+            }
+            if (power < 0)
+            {
+                throw new System.ArgumentException("Invalid value of power. It must be greater than 0");
+            }
+            if (accuracy < 0 || accuracy > 1)
+            {
+                throw new System.ArgumentException("Invalid value of power. It must be in [0;1] interval");
             }
             double root;
             double newroot = number;

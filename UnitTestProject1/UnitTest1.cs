@@ -35,17 +35,7 @@ namespace RootTest
             double interval = expextedResult * (1 - accuracy);
             Assert.IsTrue(actualResult >= expextedResult - interval && actualResult <= expextedResult + interval);
         }
-        [TestMethod]
-        public void NewtonTestWithWarning()
-        {
-            double number = -1;
-            double power = 2;
-            double accuracy = 0.95;
-            double expextedResult = 0;
-            double actualResult = NewtonsMethod.RootOfNthDegreeByNewton(number, power, accuracy);
-            double interval = expextedResult * (1 - accuracy);
-            Assert.IsTrue(actualResult >= expextedResult - interval && actualResult <= expextedResult + interval);
-        }
+        
     }
 }
 
