@@ -8,7 +8,7 @@ namespace Root
 { 
     public static class NewtonsMethod
     {
-        public static double RootOfNthDegreeByNewton(double number, double power, double accuracy)
+        public static double RootOfNthDegreeByNewton(double number, int power, double accuracy)
         {
             if (number < 0)
             {
