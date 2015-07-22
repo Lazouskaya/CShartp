@@ -29,9 +29,9 @@ namespace RootTest
         [ExpectedException(typeof(ArgumentException))]
         public void NewtonTestNegative()
         {
-                double number = Convert.ToDouble(this.TestContext.DataRow["number"]);
-                int power = Convert.ToInt32(this.TestContext.DataRow["power"]);
-                double accurancy = Convert.ToDouble(this.TestContext.DataRow["accurancy"]);
+                double number = Convert.ToDouble(TestContext.DataRow["number"]);
+                int power = Convert.ToInt32(TestContext.DataRow["power"]);
+                double accurancy = Convert.ToDouble(TestContext.DataRow["accurancy"]);
                 double actualResult = NewtonsMethod.RootOfNthDegreeByNewton(number,power,accurancy);
           
         }
