@@ -14,10 +14,11 @@ namespace RootTest
         [TestMethod]
         public void NewtonTestPossitive()
         {
-            double number = 144;
-            int power = 2;
+            Random rnd = new Random();
+            double number = rnd.Next(150);
+            int power = rnd.Next(10);
             double accurancy = 0.95;
-            double expextedResult = 12;
+            double expextedResult = Math.Pow(number,1.00/(double)power);
             double actualResult = NewtonsMethod.RootOfNthDegreeByNewton(number, power, accurancy);
             double interval = expextedResult * (1 - accurancy);
             Assert.IsTrue(actualResult >= expextedResult - interval && actualResult <= expextedResult + interval);
