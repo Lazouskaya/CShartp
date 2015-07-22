@@ -3,35 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SortingComparer;
 using StringSorting;
 
 namespace SortingApplication
 {
+   
     class Program
     {
+        static ByAlphabetOrder byAlphabet = new ByAlphabetOrder();
+        static ByReverceAlphabetOrder byReverceAlphabet = new ByReverceAlphabetOrder();
+        static ByIncreaseStringLength byIncreaseStringLength = new ByIncreaseStringLength();
+        static ByDecreaseStringLength byDecreaseStringLength = new ByDecreaseStringLength();
+        static ByIncreaseSymbolEntry byIncreaseSymbolEntry = new ByIncreaseSymbolEntry();
+        static ByDecreaseSymbolEntry byDecreaseSymbolEntry = new ByDecreaseSymbolEntry();
         static void Main(string[] args)
         {
-            String[] Array = { "key", "monkey", "apple" };
+            String[] array = { "success", "boss", "pasta" };
             Console.WriteLine("Source Array:");
-            WriteArray(Array);
-            String[] SortedArray = Sort.ByAlphabetOrder(Array);
+            WriteArray(array);
+            String[] sortedArray = Sort.BubbleSort(array, byAlphabet);
             Console.WriteLine("By alphabet order:");
-            WriteArray(SortedArray);
-            SortedArray = Sort.ByReverceAlphabetOrder(Array);
+            WriteArray(sortedArray);
+            sortedArray = Sort.BubbleSort(array,byReverceAlphabet);
             Console.WriteLine("By reverce alphabet order:");
-            WriteArray(SortedArray);
-            SortedArray = Sort.ByIncreaseStringLength(Array);
+            WriteArray(sortedArray);
+            sortedArray = Sort.BubbleSort(array,byIncreaseStringLength);
             Console.WriteLine("By increase string length:");
-            WriteArray(SortedArray);
-            SortedArray = Sort.ByDecreaseStringLength(Array);
+            WriteArray(sortedArray);
+            sortedArray = Sort.BubbleSort(array,byDecreaseStringLength);
             Console.WriteLine("By decrease string length:");
-            WriteArray(SortedArray);
-            SortedArray = Sort.ByIncreaseSymbolEntry(Array, "o");
+            WriteArray(sortedArray);
+            sortedArray = Sort.BubbleSort(array,byIncreaseSymbolEntry);
             Console.WriteLine("By increase symbol entry:");
-            WriteArray(SortedArray);
-            SortedArray = Sort.ByDecreaseSymbolEntry(Array, "o");
+            WriteArray(sortedArray);
+            sortedArray = Sort.BubbleSort(array,byDecreaseSymbolEntry);
             Console.WriteLine("By decrease symbol entry:");
-            WriteArray(SortedArray);
+            WriteArray(sortedArray);
             Console.ReadKey(); 
         }
 

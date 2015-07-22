@@ -7,88 +7,28 @@ namespace StringSorting
 {
     public static class Sort
     {
-        public static String[] ByAlphabetOrder(String[] SourceArray)
+        public static String[] swap(String[] array,int i, int j)
         {
-            return ByAlphabet(SourceArray, -1);
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+            return array;
         }
 
-        public static String[] ByReverceAlphabetOrder(String[] SourceArray)
+        public static String[] BubbleSort(String[] sourceArray, IComparer<String> Comparer)
         {
-            return ByAlphabet(SourceArray, 1);
-        }
-
-        public static String[] ByDecreaseStringLength(String[] SourceArray)
-        {
-            return ByStringLength(SourceArray, 1);
-        }
-
-        public static String[] ByIncreaseStringLength(String[] SourceArray)
-        {
-            return ByStringLength(SourceArray, -1);
-        }
-
-        public static String[] ByIncreaseSymbolEntry(String[] SourceArray, String symbol)
-        {
-            return BySymbolEntry(SourceArray, symbol, -1);
-        }
-
-        public static String[] ByDecreaseSymbolEntry(String[] SourceArray, String symbol)
-        {
-            return BySymbolEntry(SourceArray, symbol, 1);
-        }
-
-        public static String[] ByAlphabet(String[] SourceArray, int Order)
-        {
-            for (int i = 0; i < SourceArray.Length; i++)
+            for (int i = 0; i < sourceArray.Length; i++)
             {
-                for (int j = i + 1; j < SourceArray.Length; j++)
+                for (int j = i + 1; j < sourceArray.Length; j++)
                 {
-                    if (SourceArray[j].Substring(0, 1).CompareTo(SourceArray[i].Substring(0, 1)) == Order)
+
+                    if (Comparer.Compare(sourceArray[j],sourceArray[i])==-1)
                     {
-                        var temp = SourceArray[i];
-                        SourceArray[i] = SourceArray[j];
-                        SourceArray[j] = temp;
+                        swap(sourceArray,i,j);
                     }
                 }
             }
-            return SourceArray;
+            return sourceArray;
         }
-
-        public static String[] ByStringLength(String[] SourceArray, int Order)
-        {
-            for (int i = 0; i < SourceArray.Length; i++)
-            {
-                for (int j = i + 1; j < SourceArray.Length; j++)
-                {
-                    if (SourceArray[j].Length.CompareTo(SourceArray[i].Length) == Order)
-                    {
-                        var temp = SourceArray[i];
-                        SourceArray[i] = SourceArray[j];
-                        SourceArray[j] = temp;
-                    }
-                }
-            }
-            return SourceArray;
-        }
-
-        public static String[] BySymbolEntry(String[] SourceArray, string symbol, int Order)
-        {
-            for (int i = 0; i < SourceArray.Length; i++)
-            {
-                for (int j = i + 1; j < SourceArray.Length; j++)
-                {
-                    int Jsymbols = SourceArray[j].Split(new string[] { symbol }, StringSplitOptions.None).Count() - 1;
-                    int Isymbols = SourceArray[i].Split(new string[] { symbol }, StringSplitOptions.None).Count() - 1;
-                    if (Jsymbols.CompareTo(Isymbols) == Order)
-                    {
-                        var temp = SourceArray[i];
-                        SourceArray[i] = SourceArray[j];
-                        SourceArray[j] = temp;
-                    }
-                }
-            }
-            return SourceArray;
-        }
-
     }
 }

@@ -13,6 +13,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sort", "Sort\Sort.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingApplication", "SortingApplication\SortingApplication.csproj", "{02CB38DA-85FB-4F19-A84A-57787873F90A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingTest", "SortingTest\SortingTest.csproj", "{B3049FAD-7426-4BE6-9D5A-4081F4A316C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingComparer", "SortingComparer\SortingComparer.csproj", "{AF1EAB53-860E-45A8-9E04-495255756A1C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{21B971A0-5EEB-4023-9178-F1AFF0A5FFF3}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +48,14 @@ Global
 		{02CB38DA-85FB-4F19-A84A-57787873F90A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02CB38DA-85FB-4F19-A84A-57787873F90A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02CB38DA-85FB-4F19-A84A-57787873F90A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3049FAD-7426-4BE6-9D5A-4081F4A316C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3049FAD-7426-4BE6-9D5A-4081F4A316C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3049FAD-7426-4BE6-9D5A-4081F4A316C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3049FAD-7426-4BE6-9D5A-4081F4A316C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF1EAB53-860E-45A8-9E04-495255756A1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF1EAB53-860E-45A8-9E04-495255756A1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF1EAB53-860E-45A8-9E04-495255756A1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF1EAB53-860E-45A8-9E04-495255756A1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
