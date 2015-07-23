@@ -9,51 +9,59 @@ namespace NodMethods
 {
     public static class Nod
     {
-        public static int Evclidean(int firstNum, int secondNum)
+        private static int EvclideanNod(int greater, int less)
         {
-            int[] numbers = {firstNum, secondNum};
-            checkArguments(numbers);
-            Stopwatch stopWatch = new Stopwatch();
-            stopWatch.Start();
-            while (numbers[1] != 0)
-                numbers[1] = numbers[0] % (numbers[0] = numbers[1]);
-            Console.WriteLine("Time elapsed: {0}", stopWatch.Elapsed);
-            return numbers[0];
+            while (less != 0)
+                less = greater % (greater = less);
+            return greater;
         }
-
-        public static int Evclidean(params int[] numbers)
+        private static int EvclideanNod(params int[] numbers)
         {
-            
-            checkArguments(numbers);
-            Stopwatch stopWatch = new Stopwatch();
-            stopWatch.Start();
             int firstNum;
-            int secondNum=numbers[1];
-            for (int i = 0; i < numbers.Length - 1; i++)
+            int secondNum = numbers[0];
+            for (int i = 1; i < numbers.Length; i++)
             {
                 firstNum = numbers[i];
-                while (secondNum != 0)
-                    secondNum = firstNum % (firstNum = secondNum);
+                secondNum = EvclideanNod(firstNum, secondNum);
             }
-            Console.WriteLine("Time elapsed: {0}", stopWatch.Elapsed);
             return secondNum;
         }
-
-        public static int Stain(int firstNum, int secondNum)
+        public static int Evclidean(params int[] numbers)
         {
-            //checkArguments(firstNum, secondNum);
+            checkArguments(numbers);
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
-            int remainder = 1;
-            //firstNum == 0 || secondNum == 0 ? remainder = firstNum | secondNum:;
-            while (firstNum % secondNum != 0)
-            {
-                remainder = firstNum % secondNum;
-                firstNum = secondNum;
-                secondNum = remainder;
-            }
+            int nod = EvclideanNod(numbers);
             Console.WriteLine("Time elapsed: {0}", stopWatch.Elapsed);
-            return remainder;
+            return nod;
+        }
+
+        public static int StainNod(int firstNum, int secondNum)
+        {
+            //НОД(0, n) = n; НОД(m, 0) = m.
+            if (firstNum == 0 || secondNum == 0)
+            { return firstNum | secondNum;}
+            //НОД(m, m) = m;
+            else if (firstNum == secondNum)
+            {return firstNum;}
+            //НОД(1, n) = 1; НОД(m, 1) = 1;
+            else if (firstNum == 1 && secondNum == 1)
+            { return 1;}
+            //Если m, n чётные, то НОД(m, n) = 2*НОД(m/2, n/2);
+            else if (firstNum%2 == 0 && secondNum%2 == 0)
+            {return 2*EvclideanNod(firstNum/2, secondNum/2);}
+            //Если m чётное, n нечётное, то НОД(m, n) = НОД(m/2, n);
+            else if (firstNum%2 == 0 && secondNum%2 != 0)
+            { return EvclideanNod(firstNum/2, secondNum);}
+            //Если n чётное, m нечётное, то НОД(m, n) = НОД(m, n/2);
+            else if (firstNum%2 != 0 && secondNum%2 == 0)
+            {
+                return EvclideanNod(firstNum, secondNum/2);
+            }
+            //Если m, n нечётные и n < m, то НОД(m, n) = НОД((m-n)/2, n);
+            else
+            {
+                return EvclideanNod(firstNum - secondNum/2, secondNum);}
         }
 
 
