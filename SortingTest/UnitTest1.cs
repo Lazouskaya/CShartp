@@ -15,8 +15,8 @@ namespace SortingTest
         ByReverceAlphabetOrder byReverceAlphabet = new ByReverceAlphabetOrder();
         ByIncreaseStringLength byIncreaseStringLength = new ByIncreaseStringLength();
         ByDecreaseStringLength byDecreaseStringLength = new ByDecreaseStringLength();
-        ByIncreaseSymbolEntry byIncreaseSymbolEntry = new ByIncreaseSymbolEntry();
-        ByDecreaseSymbolEntry byDecreaseSymbolEntry = new ByDecreaseSymbolEntry();
+        ByIncreaseSymbolEntry byIncreaseSymbolEntry = new ByIncreaseSymbolEntry { Symbol = "s" };
+        ByDecreaseSymbolEntry byDecreaseSymbolEntry = new ByDecreaseSymbolEntry{ Symbol = "s" };
         [TestMethod]
         public void TestMethod1()
         {

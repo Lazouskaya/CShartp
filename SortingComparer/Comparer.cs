@@ -37,19 +37,21 @@ namespace SortingComparer
      }
      public class ByIncreaseSymbolEntry : IComparer<String>
      {
+         public string Symbol { get; set; }
          public int Compare(String word1, String word2)
          {
-             int symbolEntries1 = word1.Split(new string[] { "s" }, StringSplitOptions.None).Count() - 1;
-             int symbolEntries2 = word2.Split(new string[] { "s" }, StringSplitOptions.None).Count() - 1;
+             int symbolEntries1 = word1.Split(new string[] { Symbol }, StringSplitOptions.None).Count() - 1;
+             int symbolEntries2 = word2.Split(new string[] { Symbol }, StringSplitOptions.None).Count() - 1;
              return symbolEntries1.CompareTo(symbolEntries2);
          }
      }
      public class ByDecreaseSymbolEntry : IComparer<String>
      {
+         public string Symbol { get; set; }
          public int Compare(String word1, String word2)
          {
-             int symbolEntries1 = word1.Split(new string[] { "s" }, StringSplitOptions.None).Count() - 1;
-             int symbolEntries2 = word2.Split(new string[] { "s" }, StringSplitOptions.None).Count() - 1;
+             int symbolEntries1 = word1.Split(new string[] { Symbol }, StringSplitOptions.None).Count() - 1;
+             int symbolEntries2 = word2.Split(new string[] { Symbol }, StringSplitOptions.None).Count() - 1;
              return -symbolEntries1.CompareTo(symbolEntries2);
          }
      }
