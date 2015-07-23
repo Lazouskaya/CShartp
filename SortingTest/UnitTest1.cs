@@ -2,51 +2,43 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SortingComparer;
 using StringSorting;
+using System.Collections.Generic;
+using NUnit.Framework;
+
+
 
 
 namespace SortingTest
 { 
 
     [TestClass]
-    public class UnitTest1
+    public class SortTest
     {
+        private static string SUBSTRING = "s";
         private static String[] testArray = { "success", "boss", "past" };
-        ByAlphabetOrder byAlphabet = new ByAlphabetOrder();
-        ByReverceAlphabetOrder byReverceAlphabet = new ByReverceAlphabetOrder();
-        ByIncreaseStringLength byIncreaseStringLength = new ByIncreaseStringLength();
-        ByDecreaseStringLength byDecreaseStringLength = new ByDecreaseStringLength();
-        ByIncreaseSymbolEntry byIncreaseSymbolEntry = new ByIncreaseSymbolEntry { Symbol = "s" };
-        ByDecreaseSymbolEntry byDecreaseSymbolEntry = new ByDecreaseSymbolEntry{ Symbol = "s" };
-        [TestMethod]
-        public void TestMethod1()
+        public static IEnumerable<TestCaseData> TestCases
         {
-            String[] sortedArray = Sort.BubbleSort(testArray, byAlphabet);
-            Array.Sort(testArray,byAlphabet);
-            AssertAreEqualsArrays(sortedArray);
-            sortedArray = Sort.BubbleSort(testArray, byReverceAlphabet);
-            Array.Sort(testArray,byReverceAlphabet);
-            AssertAreEqualsArrays(sortedArray);
-            sortedArray = Sort.BubbleSort(testArray, byIncreaseStringLength);
-            Array.Sort(testArray,byIncreaseStringLength);
-            AssertAreEqualsArrays(sortedArray);
-            sortedArray = Sort.BubbleSort(testArray, byDecreaseStringLength);
-            Array.Sort(testArray, byDecreaseStringLength);
-            AssertAreEqualsArrays(sortedArray);
-            sortedArray = Sort.BubbleSort(testArray, byIncreaseSymbolEntry);
-            Array.Sort(testArray, byIncreaseSymbolEntry);
-            AssertAreEqualsArrays(sortedArray);
-            sortedArray = Sort.BubbleSort(testArray, byDecreaseSymbolEntry);
-            Array.Sort(testArray, byDecreaseSymbolEntry);
-            AssertAreEqualsArrays(sortedArray);
-        }
-
-        public void AssertAreEqualsArrays(String[] actual)
-        {
-            for (int i = 1; i < testArray.Length; i++)
+            get
             {
-                Assert.AreEqual(actual[i], testArray[i]);
+                yield return new TestCaseData(new ByAlphabetOrder());
+                yield return new TestCaseData(new ByReverceAlphabetOrder());
+                yield return new TestCaseData(new ByIncreaseStringLength());
+                yield return new TestCaseData(new ByDecreaseStringLength());
+                yield return new TestCaseData(new ByIncreaseSymbolEntry { Symbol = SUBSTRING });
+                yield return new TestCaseData(new ByDecreaseSymbolEntry { Symbol = SUBSTRING });
             }
         }
+       
+        [TestMethod, TestCaseSource("TestCases")]
+        
+        public void BubleSortTest(IComparer<string> comparer)
+        {
+            
+            String[] sortedArray = Sort.BubbleSort(testArray, comparer);
+            Array.Sort(testArray, comparer);
+            NUnit.Framework.Assert.That(testArray, Is.EqualTo(sortedArray));
+        }
     }
+
     
 }
