@@ -11,8 +11,8 @@ namespace NodApplication
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(Nod.Evclidean(9,12));
-            Console.WriteLine(Nod.Evclidean(18,27,84,36));
+            Console.WriteLine(Nod.Evclidean(4,12));
+            Console.WriteLine(Nod.Evclidean(18,4,27,36));
             Console.ReadKey();
         }
     }

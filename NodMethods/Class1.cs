@@ -11,10 +11,41 @@ namespace NodMethods
     {
         public static int Evclidean(int firstNum, int secondNum)
         {
-            checkArguments(firstNum, secondNum);
+            int[] numbers = {firstNum, secondNum};
+            checkArguments(numbers);
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+            while (numbers[1] != 0)
+                numbers[1] = numbers[0] % (numbers[0] = numbers[1]);
+            Console.WriteLine("Time elapsed: {0}", stopWatch.Elapsed);
+            return numbers[0];
+        }
+
+        public static int Evclidean(params int[] numbers)
+        {
+            
+            checkArguments(numbers);
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+            int firstNum;
+            int secondNum=numbers[1];
+            for (int i = 0; i < numbers.Length - 1; i++)
+            {
+                firstNum = numbers[i];
+                while (secondNum != 0)
+                    secondNum = firstNum % (firstNum = secondNum);
+            }
+            Console.WriteLine("Time elapsed: {0}", stopWatch.Elapsed);
+            return secondNum;
+        }
+
+        public static int Stain(int firstNum, int secondNum)
+        {
+            //checkArguments(firstNum, secondNum);
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
             int remainder = 1;
+            //firstNum == 0 || secondNum == 0 ? remainder = firstNum | secondNum:;
             while (firstNum % secondNum != 0)
             {
                 remainder = firstNum % secondNum;
@@ -25,49 +56,9 @@ namespace NodMethods
             return remainder;
         }
 
-        public static int Evclidean(params int[] numbers)
-        {
-            
-            checkArguments(numbers);
-            Stopwatch stopWatch = new Stopwatch();
-            stopWatch.Start();
-            int remainder = 1;
-            int firstNum=numbers[0];
-            int secondNum = numbers[1];
-            for (int i = 0; i < numbers.Length - 1; i++)
-            {
-                while (firstNum % secondNum != 0)
-                {
-                    remainder = firstNum % secondNum;
-                    firstNum = secondNum;
-                    secondNum = remainder;
-                }
-                firstNum = secondNum;
-                secondNum = remainder;
-            }
-            Console.WriteLine("Time elapsed: {0}", stopWatch.Elapsed);
-            return remainder;
-        }
 
-        private static void swap(int number1, int number2)
-        {
-            int temp = number1;
-            number1 = number2;
-            number2 = temp;
-        }
 
-        private static void checkArguments(int firstNum, int secondNum)
-        {
-            if (firstNum == 0 && secondNum == 0 || firstNum < 0 || secondNum < 0)
-            {
-                throw new ArgumentException();
-            }
-            if (firstNum < secondNum)
-            {
-                swap(firstNum, secondNum);
-            }
-        }
-        private static void checkArguments(int[] numbers)
+        private static int[] checkArguments(int[] numbers)
         {
             Array.Sort(numbers);
             foreach (int num in numbers)
@@ -81,6 +72,7 @@ namespace NodMethods
             {
                 throw new ArgumentException();
             }
+            return numbers;
         }
     }
 }
