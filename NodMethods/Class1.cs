@@ -11,23 +11,7 @@ namespace NodMethods
     {
         public static int Evclidean(int firstNum, int secondNum)
         {
-            checkArguments(firstNum,secondNum);
-            Stopwatch stopWatch = new Stopwatch();
-            stopWatch.Start();
-            int remainder = 1;
-            while (firstNum % secondNum != 0)
-            {
-                remainder=firstNum%secondNum;
-                firstNum = secondNum;
-                secondNum = remainder;
-            }
-            getExecutionTime(stopWatch);
-            return remainder;
-        }
-
-        public static int Evclidean(params int[] numbers)
-        {
-            checkArguments(numbers);
+            checkArguments(firstNum, secondNum);
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
             int remainder = 1;
@@ -37,18 +21,32 @@ namespace NodMethods
                 firstNum = secondNum;
                 secondNum = remainder;
             }
-            getExecutionTime(stopWatch);
+            Console.WriteLine("Time elapsed: {0}", stopWatch.Elapsed);
             return remainder;
         }
 
-        private static void getExecutionTime(Stopwatch stopWatch)
+        public static int Evclidean(params int[] numbers)
         {
-            stopWatch.Stop();
-            TimeSpan ts = stopWatch.Elapsed;
-            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-                ts.Hours, ts.Minutes, ts.Seconds,
-                ts.Milliseconds / 10);
-            Console.WriteLine("RunTime " + elapsedTime);
+            
+            checkArguments(numbers);
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+            int remainder = 1;
+            int firstNum=numbers[0];
+            int secondNum = numbers[1];
+            for (int i = 0; i < numbers.Length - 1; i++)
+            {
+                while (firstNum % secondNum != 0)
+                {
+                    remainder = firstNum % secondNum;
+                    firstNum = secondNum;
+                    secondNum = remainder;
+                }
+                firstNum = secondNum;
+                secondNum = remainder;
+            }
+            Console.WriteLine("Time elapsed: {0}", stopWatch.Elapsed);
+            return remainder;
         }
 
         private static void swap(int number1, int number2)
@@ -67,6 +65,21 @@ namespace NodMethods
             if (firstNum < secondNum)
             {
                 swap(firstNum, secondNum);
+            }
+        }
+        private static void checkArguments(int[] numbers)
+        {
+            Array.Sort(numbers);
+            foreach (int num in numbers)
+            {
+                if (num < 0)
+                {
+                    throw new ArgumentException();
+                }
+            }
+            if (numbers[0] == 0 && numbers[numbers.Length] == 0)
+            {
+                throw new ArgumentException();
             }
         }
     }
