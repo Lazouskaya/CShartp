@@ -26,6 +26,7 @@ namespace NodMethods
             }
             return secondNum;
         }
+       
         public static int Evclidean(params int[] numbers)
         {
             checkArguments(numbers);
@@ -36,7 +37,7 @@ namespace NodMethods
             return nod;
         }
 
-        public static int StainNod(int firstNum, int secondNum)
+        private static int StainNod(int firstNum, int secondNum)
         {
             //НОД(0, n) = n; НОД(m, 0) = m.
             if (firstNum == 0 || secondNum == 0)
@@ -64,6 +65,27 @@ namespace NodMethods
                 return EvclideanNod(firstNum - secondNum/2, secondNum);}
         }
 
+        private static int StainNod(int[] numbers)
+        {
+            int firstNum;
+            int secondNum = numbers[0];
+            for (int i = 1; i < numbers.Length; i++)
+            {
+                firstNum = numbers[i];
+                secondNum = StainNod(firstNum, secondNum);
+            }
+            return secondNum;
+        }
+
+        public static int Stain(params int[] numbers)
+        {
+            checkArguments(numbers);
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+            int nod = StainNod(numbers);
+            Console.WriteLine("Time elapsed: {0}", stopWatch.Elapsed);
+            return nod;
+        }
 
 
         private static int[] checkArguments(int[] numbers)
@@ -76,7 +98,7 @@ namespace NodMethods
                     throw new ArgumentException();
                 }
             }
-            if (numbers[0] == 0 && numbers[numbers.Length] == 0)
+            if (numbers[0] == 0 && numbers[numbers.Length-1] == 0)
             {
                 throw new ArgumentException();
             }
