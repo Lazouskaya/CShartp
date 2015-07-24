@@ -26,7 +26,17 @@ namespace NodMethods
             }
             return secondNum;
         }
-       
+        //стоит ли оставлять перегруженный(для проверки скорости вычисления)? 
+        //public static int Evclidean(int firstNum, int secondNum)
+        //{
+        //    int[] numbers = {firstNum, secondNum};
+        //    checkArguments(numbers);
+        //    Stopwatch stopWatch = new Stopwatch();
+        //    stopWatch.Start();
+        //    int nod = EvclideanNod(firstNum,secondNum);
+        //    Console.WriteLine("Time elapsed: {0}", stopWatch.Elapsed);
+        //    return nod;
+        //}
         public static int Evclidean(params int[] numbers)
         {
             checkArguments(numbers);
